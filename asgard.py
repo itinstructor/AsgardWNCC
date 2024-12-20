@@ -32,7 +32,7 @@ class AsgardGUI(Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.setupUi(dialog)
 
-        self.getSerialPorts()
+        self.get_serial_ports()
 
         self.SerialThreadClass = SerialThreadClass()
         self.SerialThreadClass.serialSignal.connect(self.update_console)
@@ -69,57 +69,57 @@ class AsgardGUI(Ui_MainWindow):
         self.FKInc10ButtonArt2.pressed.connect(self.fk_inc10_art2)
 
         self.FKGoButtonArt3.pressed.connect(self.fk_move_art3)
-        self.FKSliderArt3.valueChanged.connect(self.FKSliderUpdateArt3)
-        self.SpinBoxArt3.valueChanged.connect(self.FKSpinBoxUpdateArt3)
-        self.FKDec10ButtonArt3.pressed.connect(self.FKDec10Art3)
-        self.FKDec1ButtonArt3.pressed.connect(self.FKDec1Art3)
-        self.FKDec0_1ButtonArt3.pressed.connect(self.FKDec0_1Art3)
-        self.FKInc0_1ButtonArt3.pressed.connect(self.FKInc0_1Art3)
-        self.FKInc1ButtonArt3.pressed.connect(self.FKInc1Art3)
-        self.FKInc10ButtonArt3.pressed.connect(self.FKInc10Art3)
+        self.FKSliderArt3.valueChanged.connect(self.fk_slider_update_art3)
+        self.SpinBoxArt3.valueChanged.connect(self.fk_spinbox_update_art3)
+        self.FKDec10ButtonArt3.pressed.connect(self.fk_dec10_art3)
+        self.FKDec1ButtonArt3.pressed.connect(self.fk_dec1_art3)
+        self.FKDec0_1ButtonArt3.pressed.connect(self.fk_dec0_1_art3)
+        self.FKInc0_1ButtonArt3.pressed.connect(self.fk_inc0_1_art3)
+        self.FKInc1ButtonArt3.pressed.connect(self.fk_inc1_art3)
+        self.FKInc10ButtonArt3.pressed.connect(self.fk_inc10_art3)
 
-        self.FKGoButtonArt4.pressed.connect(self.FKMoveArt4)
-        self.FKSliderArt4.valueChanged.connect(self.FKSliderUpdateArt4)
-        self.SpinBoxArt4.valueChanged.connect(self.FKSpinBoxUpdateArt4)
-        self.FKDec10ButtonArt4.pressed.connect(self.FKDec10Art4)
-        self.FKDec1ButtonArt4.pressed.connect(self.FKDec1Art4)
-        self.FKDec0_1ButtonArt4.pressed.connect(self.FKDec0_1Art4)
-        self.FKInc0_1ButtonArt4.pressed.connect(self.FKInc0_1Art4)
-        self.FKInc1ButtonArt4.pressed.connect(self.FKInc1Art4)
-        self.FKInc10ButtonArt4.pressed.connect(self.FKInc10Art4)
+        self.FKGoButtonArt4.pressed.connect(self.fk_move_art4)
+        self.FKSliderArt4.valueChanged.connect(self.fk_slider_update_art4)
+        self.SpinBoxArt4.valueChanged.connect(self.fk_spinbox_update_art4)
+        self.FKDec10ButtonArt4.pressed.connect(self.fk_dec10_art4)
+        self.FKDec1ButtonArt4.pressed.connect(self.fk_dec1_art4)
+        self.FKDec0_1ButtonArt4.pressed.connect(self.fk_dec0_1_art4)
+        self.FKInc0_1ButtonArt4.pressed.connect(self.fk_inc0_1_art4)
+        self.FKInc1ButtonArt4.pressed.connect(self.fk_inc1_art4)
+        self.FKInc10ButtonArt4.pressed.connect(self.fk_inc10_art4)
 
-        self.FKGoButtonArt5.pressed.connect(self.FKMoveArt5)
-        self.FKSliderArt5.valueChanged.connect(self.FKSliderUpdateArt5)
-        self.SpinBoxArt5.valueChanged.connect(self.FKSpinBoxUpdateArt5)
-        self.FKDec10ButtonArt5.pressed.connect(self.FKDec10Art5)
-        self.FKDec1ButtonArt5.pressed.connect(self.FKDec1Art5)
-        self.FKDec0_1ButtonArt5.pressed.connect(self.FKDec0_1Art5)
-        self.FKInc0_1ButtonArt5.pressed.connect(self.FKInc0_1Art5)
-        self.FKInc1ButtonArt5.pressed.connect(self.FKInc1Art5)
-        self.FKInc10ButtonArt5.pressed.connect(self.FKInc10Art5)
+        self.FKGoButtonArt5.pressed.connect(self.fk_move_art5)
+        self.FKSliderArt5.valueChanged.connect(self.fk_slider_update_art5)
+        self.SpinBoxArt5.valueChanged.connect(self.fk_spinbox_update_art5)
+        self.FKDec10ButtonArt5.pressed.connect(self.fk_dec10_art5)
+        self.FKDec1ButtonArt5.pressed.connect(self.fk_dec1_art5)
+        self.FKDec0_1ButtonArt5.pressed.connect(self.fk_dec0_1_art5)
+        self.FKInc0_1ButtonArt5.pressed.connect(self.fk_inc0_1_art5)
+        self.FKInc1ButtonArt5.pressed.connect(self.fk_inc1_art5)
+        self.FKInc10ButtonArt5.pressed.connect(self.fk_inc10_art5)
 
-        self.FKGoButtonArt6.pressed.connect(self.FKMoveArt6)
-        self.FKSliderArt6.valueChanged.connect(self.FKSliderUpdateArt6)
-        self.SpinBoxArt6.valueChanged.connect(self.FKSpinBoxUpdateArt6)
-        self.FKDec10ButtonArt6.pressed.connect(self.FKDec10Art6)
-        self.FKDec1ButtonArt6.pressed.connect(self.FKDec1Art6)
-        self.FKDec0_1ButtonArt6.pressed.connect(self.FKDec0_1Art6)
-        self.FKInc0_1ButtonArt6.pressed.connect(self.FKInc0_1Art6)
-        self.FKInc1ButtonArt6.pressed.connect(self.FKInc1Art6)
-        self.FKInc10ButtonArt6.pressed.connect(self.FKInc10Art6)
+        self.FKGoButtonArt6.pressed.connect(self.fk_move_art6)
+        self.FKSliderArt6.valueChanged.connect(self.fk_slider_update_art6)
+        self.SpinBoxArt6.valueChanged.connect(self.fk_spinbox_update_art6)
+        self.FKDec10ButtonArt6.pressed.connect(self.fk_dec10_art6)
+        self.FKDec1ButtonArt6.pressed.connect(self.fk_dec1_art6)
+        self.FKDec0_1ButtonArt6.pressed.connect(self.fk_dec0_1_art6)
+        self.FKInc0_1ButtonArt6.pressed.connect(self.fk_inc0_1_art6)
+        self.FKInc1ButtonArt6.pressed.connect(self.fk_inc1_art6)
+        self.FKInc10ButtonArt6.pressed.connect(self.fk_inc10_art6)
 
-        self.FKGoAllButton.pressed.connect(self.FKMoveAll)
+        self.FKGoAllButton.pressed.connect(self.fk_move_all)
 
-        self.GoButtonGripper.pressed.connect(self.MoveGripper)
-        self.SliderGripper.valueChanged.connect(self.SliderUpdateGripper)
-        self.SpinBoxGripper.valueChanged.connect(self.SpinBoxUpdateGripper)
-        self.Dec10ButtonGripper.pressed.connect(self.Dec10Gripper)
-        self.Dec1ButtonGripper.pressed.connect(self.Dec1Gripper)
-        self.Inc1ButtonGripper.pressed.connect(self.Inc1Gripper)
-        self.Inc10ButtonGripper.pressed.connect(self.Inc10Gripper)
+        self.GoButtonGripper.pressed.connect(self.move_gripper)
+        self.SliderGripper.valueChanged.connect(self.slider_update_gripper)
+        self.SpinBoxGripper.valueChanged.connect(self.spinbox_update_gripper)
+        self.Dec10ButtonGripper.pressed.connect(self.dec10_gripper)
+        self.Dec1ButtonGripper.pressed.connect(self.dec1_gripper)
+        self.Inc1ButtonGripper.pressed.connect(self.inc1_gripper)
+        self.Inc10ButtonGripper.pressed.connect(self.inc10_gripper)
 
-        self.SerialPortRefreshButton.pressed.connect(self.getSerialPorts)
-        self.ConnectButton.pressed.connect(self.connectSerial)
+        self.SerialPortRefreshButton.pressed.connect(self.get_serial_ports)
+        self.ConnectButton.pressed.connect(self.connect_serial)
 
         self.ConsoleButtonSend.pressed.connect(self.send_serial_command)
         self.ConsoleInput.returnPressed.connect(self.send_serial_command)
@@ -209,7 +209,7 @@ class AsgardGUI(Ui_MainWindow):
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             # Handle the case where the serial connection is not open
-            self.noSerialConnection()
+            self.no_serial_connection()
 
 # ---------------------- FK SLIDER UPDATE ART1 --------------------------- #
     def fk_slider_update_art1(self):
@@ -298,7 +298,7 @@ class AsgardGUI(Ui_MainWindow):
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             # Handle the case where the serial connection is not open
-            self.noSerialConnection()
+            self.no_serial_connection()
 
 # ---------------------- FK SLIDER UPDATE ART2 --------------------------- #
     def fk_slider_update_art2(self):
@@ -386,51 +386,51 @@ class AsgardGUI(Ui_MainWindow):
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             # Handle the case where the serial connection is not open
-            self.noSerialConnection()
+            self.no_serial_connection()
 
 # ---------------------- FK SLIDER UPDATE ART3 --------------------------- #
-    def FKSliderUpdateArt3(self):
+    def fk_slider_update_art3(self):
         val = self.FKSliderArt3.value()/10
         self.SpinBoxArt3.setValue(val)
 
 # ---------------------- FK SPINBOX UPDATE ART3 -------------------------- #
-    def FKSpinBoxUpdateArt3(self):
+    def fk_spinbox_update_art3(self):
         val = int(self.SpinBoxArt3.value()*10)
         self.FKSliderArt3.setValue(val)
 
 # ---------------------- FK DECREASE 10 ART3 ----------------------------- #
-    def FKDec10Art3(self):
+    def fk_dec10_art3(self):
         val = self.SpinBoxArt3.value()-10
         self.SpinBoxArt3.setValue(val)
 
 # ---------------------- FK DECREASE 1 ART3 ------------------------------ #
-    def FKDec1Art3(self):
+    def fk_dec1_art3(self):
         val = self.SpinBoxArt3.value()-1
         self.SpinBoxArt3.setValue(val)
 
 # ---------------------- FK DECREASE 0.1 ART3 ---------------------------- #
-    def FKDec0_1Art3(self):
+    def fk_dec0_1_art3(self):
         val = self.SpinBoxArt3.value()-0.1
         self.SpinBoxArt3.setValue(val)
 
 # ---------------------- FK INCREASE 0.1 ART3 ---------------------------- #
-    def FKInc0_1Art3(self):
+    def fk_inc0_1_art3(self):
         val = self.SpinBoxArt3.value()+0.1
         self.SpinBoxArt3.setValue(val)
 
 # ---------------------- FK INCREASE 1 ART3 ------------------------------ #
-    def FKInc1Art3(self):
+    def fk_inc1_art3(self):
         val = self.SpinBoxArt3.value()+1
         self.SpinBoxArt3.setValue(val)
 
 # ---------------------- FK INCREASE 10 ART3 ----------------------------- #
-    def FKInc10Art3(self):
+    def fk_inc10_art3(self):
         val = self.SpinBoxArt3.value()+10
         self.SpinBoxArt3.setValue(val)
 
 ##################### FORWARD KINEMATIC ART4 METHODS #######################
 # -------------------------- FK MOVE ART4 -------------------------------- #
-    def FKMoveArt4(self):
+    def fk_move_art4(self):
         """
         Handles the movement command for Art4 using the specified feed rate
         and movement type.
@@ -474,52 +474,52 @@ class AsgardGUI(Ui_MainWindow):
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             # Handle the case where the serial connection is not open
-            self.noSerialConnection()
+            self.no_serial_connection()
 
 # ---------------------- FK SLIDER UPDATE ART4 --------------------------- #
-    def FKSliderUpdateArt4(self):
+    def fk_slider_update_art4(self):
         val = self.FKSliderArt4.value()/10
         self.SpinBoxArt4.setValue(val)
 
 # ---------------------- FK SPINBOX UPDATE ART4 -------------------------- #
-    def FKSpinBoxUpdateArt4(self):
+    def fk_spinbox_update_art4(self):
         val = int(self.SpinBoxArt4.value()*10)
         self.FKSliderArt4.setValue(val)
 
 # ---------------------- FK DECREASE 10 ART4 ----------------------------- #
-    def FKDec10Art4(self):
+    def fk_dec10_art4(self):
         val = self.SpinBoxArt4.value()-10
         self.SpinBoxArt4.setValue(val)
 
 # ---------------------- FK DECREASE 1 ART4 ------------------------------ #
-    def FKDec1Art4(self):
+    def fk_dec1_art4(self):
         val = self.SpinBoxArt4.value()-1
         self.SpinBoxArt4.setValue(val)
 
 # ---------------------- FK DECREASE 0.1 ART4 ---------------------------- #
-    def FKDec0_1Art4(self):
+    def fk_dec0_1_art4(self):
         val = self.SpinBoxArt4.value()-0.1
         self.SpinBoxArt4.setValue(val)
 
 # ---------------------- FK INCREASE 0.1 ART4 ---------------------------- #
-    def FKInc0_1Art4(self):
+    def fk_inc0_1_art4(self):
         val = self.SpinBoxArt4.value()+0.1
         self.SpinBoxArt4.setValue(val)
 
 # ---------------------- FK INCREASE 1 ART4 ------------------------------ #
-    def FKInc1Art4(self):
+    def fk_inc1_art4(self):
         val = self.SpinBoxArt4.value()+1
         self.SpinBoxArt4.setValue(val)
 
 # ---------------------- FK INCREASE 10 ART4 ----------------------------- #
-    def FKInc10Art4(self):
+    def fk_inc10_art4(self):
         val = self.SpinBoxArt4.value()+10
         self.SpinBoxArt4.setValue(val)
 
 ##################### FORWARD KINEMATIC ART5 METHODS #######################
 # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
 # -------------------------- FK MOVE ART5 -------------------------------- #
-    def FKMoveArt5(self):
+    def fk_move_art5(self):
         """
         Handles the movement command for Art5 using the specified feed rate
         and movement type.
@@ -563,52 +563,52 @@ class AsgardGUI(Ui_MainWindow):
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             # Handle the case where the serial connection is not open
-            self.noSerialConnection()
+            self.no_serial_connection()
 
 # ---------------------- FK SLIDER UPDATE ART5 --------------------------- #
-    def FKSliderUpdateArt5(self):
+    def fk_slider_update_art5(self):
         val = self.FKSliderArt5.value()/10
         self.SpinBoxArt5.setValue(val)
 
 # ---------------------- FK SPINBOX UPDATE ART5 -------------------------- #
-    def FKSpinBoxUpdateArt5(self):
+    def fk_spinbox_update_art5(self):
         val = int(self.SpinBoxArt5.value()*10)
         self.FKSliderArt5.setValue(val)
 
 # ---------------------- FK DECREASE 10 ART5 ----------------------------- #
-    def FKDec10Art5(self):
+    def fk_dec10_art5(self):
         val = self.SpinBoxArt5.value()-10
         self.SpinBoxArt5.setValue(val)
 
 # ---------------------- FK DECREASE 1 ART5 ------------------------------ #
-    def FKDec1Art5(self):
+    def fk_dec1_art5(self):
         val = self.SpinBoxArt5.value()-1
         self.SpinBoxArt5.setValue(val)
 
 # ---------------------- FK DECREASE 0.1 ART5 ---------------------------- #
-    def FKDec0_1Art5(self):
+    def fk_dec0_1_art5(self):
         val = self.SpinBoxArt5.value()-0.1
         self.SpinBoxArt5.setValue(val)
 
 # ---------------------- FK INCREASE 0.1 ART5 ---------------------------- #
-    def FKInc0_1Art5(self):
+    def fk_inc0_1_art5(self):
         val = self.SpinBoxArt5.value()+0.1
         self.SpinBoxArt5.setValue(val)
 
 # ---------------------- FK INCREASE 1 ART5 ------------------------------ #
-    def FKInc1Art5(self):
+    def fk_inc1_art5(self):
         val = self.SpinBoxArt5.value()+1
         self.SpinBoxArt5.setValue(val)
 
 # ---------------------- FK INCREASE 10 ART5 ----------------------------- #
-    def FKInc10Art5(self):
+    def fk_inc10_art5(self):
         val = self.SpinBoxArt5.value()+10
         self.SpinBoxArt5.setValue(val)
 
 ##################### FORWARD KINEMATIC ART6 METHODS #######################
 # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
 # -------------------------- FK MOVE ART6 -------------------------------- #
-    def FKMoveArt6(self):
+    def fk_move_art6(self):
         """
         Handles the movement command for Art6 using the specified feed rate
         and movement type.
@@ -652,52 +652,52 @@ class AsgardGUI(Ui_MainWindow):
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             # Handle the case where the serial connection is not open
-            self.noSerialConnection()
+            self.no_serial_connection()
 
 # ---------------------- FK SLIDER UPDATE ART6 --------------------------- #
-    def FKSliderUpdateArt6(self):
+    def fk_slider_update_art6(self):
         val = self.FKSliderArt6.value()/10
         self.SpinBoxArt6.setValue(val)
 
 # ---------------------- FK SPINBOX UPDATE ART6 -------------------------- #
-    def FKSpinBoxUpdateArt6(self):
+    def fk_spinbox_update_art6(self):
         val = int(self.SpinBoxArt6.value()*10)
         self.FKSliderArt6.setValue(val)
 
 # ---------------------- FK DECREASE 10 ART6 ----------------------------- #
-    def FKDec10Art6(self):
+    def fk_dec10_art6(self):
         val = self.SpinBoxArt6.value()-10
         self.SpinBoxArt6.setValue(val)
 
 # ---------------------- FK DECREASE 1 ART6 ------------------------------ #
-    def FKDec1Art6(self):
+    def fk_dec1_art6(self):
         val = self.SpinBoxArt6.value()-1
         self.SpinBoxArt6.setValue(val)
 
 # ---------------------- FK DECREASE 0.1 ART6 ---------------------------- #
-    def FKDec0_1Art6(self):
+    def fk_dec0_1_art6(self):
         val = self.SpinBoxArt6.value()-0.1
         self.SpinBoxArt6.setValue(val)
 
 # ---------------------- FK INCREASE 0.1 ART6 ---------------------------- #
-    def FKInc0_1Art6(self):
+    def fk_inc0_1_art6(self):
         val = self.SpinBoxArt6.value()+0.1
         self.SpinBoxArt6.setValue(val)
 
 # ---------------------- FK INCREASE 1 ART6 ------------------------------ #
-    def FKInc1Art6(self):
+    def fk_inc1_art6(self):
         val = self.SpinBoxArt6.value()+1
         self.SpinBoxArt6.setValue(val)
 
 # ---------------------- FK INCREASE 10 ART6 ----------------------------- #
-    def FKInc10Art6(self):
+    def fk_inc10_art6(self):
         val = self.SpinBoxArt6.value()+10
         self.SpinBoxArt6.setValue(val)
 
 # FK Every Articulation Functions
 # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
 # -------------------------- FK MOVE ALL -------------------------------- #
-    def FKMoveAll(self):
+    def fk_move_all(self):
         """
         Moves all axes based on the current input values and 
         selected movement type.
@@ -740,11 +740,11 @@ class AsgardGUI(Ui_MainWindow):
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             # Handle the case where the serial connection is not open
-            self.noSerialConnection()
+            self.no_serial_connection()
 
 # -------------------------- MOVE GRIPPER ------------------------------- #
 # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
-    def MoveGripper(self):
+    def move_gripper(self):
         # Check if the serial connection is open
         if s0.isOpen():
             # Construct the gripper control message with the SpinBoxGripper value
@@ -759,46 +759,46 @@ class AsgardGUI(Ui_MainWindow):
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             # Handle the case where the serial connection is not open
-            self.noSerialConnection()
+            self.no_serial_connection()
 
 # ---------------------- SLIDER UPDATE GRIPPER --------------------------- #
-    def SliderUpdateGripper(self):
+    def slider_update_gripper(self):
         val = self.SliderGripper.value()
         self.SpinBoxGripper.setValue(val)
 
 # ---------------------- SPINBOX UPDATE GRIPPER -------------------------- #
-    def SpinBoxUpdateGripper(self):
+    def spinbox_update_gripper(self):
         val = int(self.SpinBoxGripper.value())
         self.SliderGripper.setValue(val)
 
 # ---------------------- DECREASE 10 GRIPPER ----------------------------- #
-    def Dec10Gripper(self):
+    def dec10_gripper(self):
         val = self.SpinBoxGripper.value()-10
         self.SpinBoxGripper.setValue(val)
 
 # ---------------------- DECREASE 1 GRIPPER ------------------------------ #
-    def Dec1Gripper(self):
+    def dec1_gripper(self):
         val = self.SpinBoxGripper.value()-1
         self.SpinBoxGripper.setValue(val)
 
 # ---------------------- INCREASE 1 GRIPPER ------------------------------ #
-    def Inc1Gripper(self):
+    def inc1_gripper(self):
         val = self.SpinBoxGripper.value()+1
         self.SpinBoxGripper.setValue(val)
 
 # ---------------------- INCREASE 10 GRIPPER ----------------------------- #
-    def Inc10Gripper(self):
+    def inc10_gripper(self):
         val = self.SpinBoxGripper.value()+10
         self.SpinBoxGripper.setValue(val)
 
 #################### SERIAL CONNECT METHODS ################################
 # ----------------------- GET SERIAL PORTS ------------------------------- #
-    def getSerialPorts(self):
+    def get_serial_ports(self):
         self.SerialPortComboBox.clear()
         self.SerialPortComboBox.addItems(spf.serial_ports())
 
 # ------------------------ CONNECT SERIAL -------------------------------- #
-    def connectSerial(self):
+    def connect_serial(self):
         """
         Connects to the serial port using the selected serial port
         and baud rate from the combo boxes.
@@ -841,13 +841,13 @@ class AsgardGUI(Ui_MainWindow):
                     print("error opening serial port: " + str(e))
             else:
                 # Handle the case where no baud rate is selected
-                self.blankBaudRate()
+                self.blank_baud_rate()
         else:
             # Handle the case where no serial port is selected
-            self.blankSerialPort()
+            self.blank_serial_port()
 
 # ---------------------- SERIAL DISCONNECTED ----------------------------- #
-    def serialDisconnected(self):
+    def serial_disconnected(self):
         self.RobotStateDisplay.setStyleSheet(
             'background-color: rgb(255, 0, 0)')
         self.RobotStateDisplay.setText("Disconnected")
@@ -868,7 +868,7 @@ class AsgardGUI(Ui_MainWindow):
             # Close the serial port
             s0.close()
             # Handle the serial disconnection
-            self.serialDisconnected()
+            self.serial_disconnected()
             # Print a message indicating the serial connection is lost
             print("Serial Connection Lost")
         else:
@@ -883,7 +883,7 @@ class AsgardGUI(Ui_MainWindow):
             # If the data read is verbose data
             elif isDataReadVerbose:
                 # Update the forward kinematic position display with the data read
-                self.updateFKPosDisplay(dataRead)
+                self.update_fk_pos_display(dataRead)
                 # If the verbose output checkbox is checked
                 if verboseShow:
                     # Display the data read in the console output
@@ -907,12 +907,12 @@ class AsgardGUI(Ui_MainWindow):
                 self.ConsoleInput.clear()
         else:
             # Handle the case where the serial connection is not open
-            self.noSerialConnection()
+            self.no_serial_connection()
 
 # ---------------------- UPDATE FK POS DISPLAY --------------------------- #
-    def updateFKPosDisplay(self, dataRead):
+    def update_fk_pos_display(self, dataRead):
         data = dataRead[1:][:-1].split(",")
-        self.updateCurrentState(data[0])
+        self.update_current_state(data[0])
         self.FKCurrentPosValueArt1.setText(data[1][5:][:-2]+"º")
         self.FKCurrentPosValueArt2.setText(data[2][:-2]+"º")
         self.FKCurrentPosValueArt3.setText(data[4][:-2]+"º")
@@ -921,7 +921,7 @@ class AsgardGUI(Ui_MainWindow):
         self.FKCurrentPosValueArt6.setText(data[7][:-2]+"º")
 
 # ---------------------- UPDATE CURRENT STATE ---------------------------- #
-    def updateCurrentState(self, state):
+    def update_current_state(self, state):
         self.RobotStateDisplay.setText(state)
         if state == "Idle" or state == "Run":
             self.RobotStateDisplay.setStyleSheet(
@@ -940,7 +940,7 @@ class AsgardGUI(Ui_MainWindow):
                 'background-color: rgb(255, 255, 255)')
 
 # ------------------------- BLANK SERIAL PORT ---------------------------- #
-    def blankSerialPort(self):
+    def blank_serial_port(self):
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
         msg = "There is not a Serial Port value indicated to establish the connection."
@@ -949,7 +949,7 @@ class AsgardGUI(Ui_MainWindow):
         msgBox.exec()
 
 # ------------------------- BLANK BAUD RATE ------------------------------ #
-    def blankBaudRate(self):
+    def blank_baud_rate(self):
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
         msg = "There is not a Baud Rate value indicated to establish the connection."
@@ -958,7 +958,7 @@ class AsgardGUI(Ui_MainWindow):
         msgBox.exec()
 
 # ------------------------- NO SERIAL CONNECTION ------------------------- #
-    def noSerialConnection(self):
+    def no_serial_connection(self):
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
         msg = "The connection has not been established yet."
