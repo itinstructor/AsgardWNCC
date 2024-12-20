@@ -971,7 +971,7 @@ class AsgardGUI(Ui_MainWindow):
         sys.exit()
 
 
-# ---------------------- ABOUT DIALOG CLASS ------------------------------- #
+# ---------------------- ABOUT DIALOG CLASS ------------------------------ #
 class AboutDialog(About_Ui_Dialog):
     def __init__(self, dialog):
         About_Ui_Dialog.__init__(self)
