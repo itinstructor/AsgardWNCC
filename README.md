@@ -1,11 +1,15 @@
 # Asgard
 
-Asgard is a Graphical User Interface (GUI) for [Thor](https://github.com/AngelLM/Thor) designed and programmed with [PyQt5](https://riverbankcomputing.com/software/pyqt/download5).
+Asgard is a Graphical User Interface (GUI) for [Thor](https://github.com/AngelLM/Thor) designed and programmed with [PySide6](https://pypi.org/project/PySide6).
 
+## Changes
 
-* Key features:
-  *  User-friendly Graphical Interface
-  *  Forward Kinematics implementation (1st version)
+- 12/19/2024: Convert to PySide6, Commented serial_port_finder.py
+
+## Key features:
+
+ - User-friendly Graphical Interface
+ - Forward Kinematics implementation (1st version)
   *  Inverse Kinematics implementation (2nd version) - *Coming soon*
   *  Sequence Programmer (3rd version) - *Coming soon*
 * Some things that I would want to add, but not in the short-term:
