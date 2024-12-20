@@ -1,19 +1,17 @@
 import sys
-# from PyQt5 import QtCore, QtGui, QtWidgets
-# from PyQt5.QtGui import *
-# from PyQt5.QtCore import *
+# pip install PySide6
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from gui import Ui_MainWindow
 from about import Ui_Dialog as About_Ui_Dialog
 
-
 import serial_port_finder as spf
 # pip install pyserial
 import serial
 import time
 
+# Create a serial object
 s0 = serial.Serial()
 
 
