@@ -1,22 +1,27 @@
 import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-
+# from PyQt5 import QtCore, QtGui, QtWidgets
+# from PyQt5.QtGui import *
+# from PyQt5.QtCore import *
+from PySide6 import QtCore, QtGui, QtWidgets
+from PySide6.QtCore import *
+from PySide6.QtGui import *
 from gui import Ui_MainWindow
 from about import Ui_Dialog as About_Ui_Dialog
 
 
 import serial_port_finder as spf
-
-import serial, time
+# pip install pyserial
+import serial
+import time
 
 s0 = serial.Serial()
+
 
 class AboutDialog(About_Ui_Dialog):
     def __init__(self, dialog):
         About_Ui_Dialog.__init__(self)
         self.setupUi(dialog)
+
 
 class AsgardGUI(Ui_MainWindow):
     def __init__(self, dialog):
@@ -124,22 +129,22 @@ class AsgardGUI(Ui_MainWindow):
 
     def sendHomingCycleCommand(self):
         if s0.isOpen():
-            messageToSend="$H"
-            messageToConsole=">>> " + messageToSend
+            messageToSend = "$H"
+            messageToConsole = ">>> " + messageToSend
             s0.write(messageToSend.encode('UTF-8'))
             self.ConsoleOutput.appendPlainText(messageToConsole)
 
     def sendZeroPositionCommand(self):
         if s0.isOpen():
-            messageToSend="G0 A0 B0 C0 D0 X0 Y0 Z0"
-            messageToConsole=">>> " + messageToSend
+            messageToSend = "G0 A0 B0 C0 D0 X0 Y0 Z0"
+            messageToConsole = ">>> " + messageToSend
             s0.write(messageToSend.encode('UTF-8'))
             self.ConsoleOutput.appendPlainText(messageToConsole)
 
     def sendKillAlarmCommand(self):
         if s0.isOpen():
-            messageToSend="$X"
-            messageToConsole=">>> " + messageToSend
+            messageToSend = "$X"
+            messageToConsole = ">>> " + messageToSend
             s0.write(messageToSend.encode('UTF-8'))
             self.ConsoleOutput.appendPlainText(messageToConsole)
 
@@ -152,262 +157,322 @@ class AsgardGUI(Ui_MainWindow):
             self.FeedRateInput.setEnabled(False)
 
 
-#FK Art1 Functions
+# FK Art1 Functions
+
     def FKMoveArt1(self):
         if s0.isOpen():
             if self.G1MoveRadioButton.isChecked():
-                typeOfMovement="G1 "
-                feedRate=" F" + str(self.FeedRateInput.value())
+                typeOfMovement = "G1 "
+                feedRate = " F" + str(self.FeedRateInput.value())
             else:
-                typeOfMovement="G0 "
-                feedRate=""
-            message=typeOfMovement + "A" + str(self.SpinBoxArt1.value()) + feedRate
+                typeOfMovement = "G0 "
+                feedRate = ""
+            message = typeOfMovement + "A" + \
+                str(self.SpinBoxArt1.value()) + feedRate
             messageToSend = message + "\n"
             messageToConsole = ">>> " + message
             s0.write(messageToSend.encode('UTF-8'))
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             self.noSerialConnection()
+
     def FKSliderUpdateArt1(self):
-        val=self.FKSliderArt1.value()/10
-        self.SpinBoxArt1.setValue(val)
-    def FKSpinBoxUpdateArt1(self):
-        val=int(self.SpinBoxArt1.value()*10)
-        self.FKSliderArt1.setValue(val)
-    def FKDec10Art1(self):
-        val=self.SpinBoxArt1.value()-10
-        self.SpinBoxArt1.setValue(val)
-    def FKDec1Art1(self):
-        val=self.SpinBoxArt1.value()-1
-        self.SpinBoxArt1.setValue(val)
-    def FKDec0_1Art1(self):
-        val=self.SpinBoxArt1.value()-0.1
-        self.SpinBoxArt1.setValue(val)
-    def FKInc0_1Art1(self):
-        val=self.SpinBoxArt1.value()+0.1
-        self.SpinBoxArt1.setValue(val)
-    def FKInc1Art1(self):
-        val=self.SpinBoxArt1.value()+1
-        self.SpinBoxArt1.setValue(val)
-    def FKInc10Art1(self):
-        val=self.SpinBoxArt1.value()+10
+        val = self.FKSliderArt1.value()/10
         self.SpinBoxArt1.setValue(val)
 
-#FK Art2 Functions
+    def FKSpinBoxUpdateArt1(self):
+        val = int(self.SpinBoxArt1.value()*10)
+        self.FKSliderArt1.setValue(val)
+
+    def FKDec10Art1(self):
+        val = self.SpinBoxArt1.value()-10
+        self.SpinBoxArt1.setValue(val)
+
+    def FKDec1Art1(self):
+        val = self.SpinBoxArt1.value()-1
+        self.SpinBoxArt1.setValue(val)
+
+    def FKDec0_1Art1(self):
+        val = self.SpinBoxArt1.value()-0.1
+        self.SpinBoxArt1.setValue(val)
+
+    def FKInc0_1Art1(self):
+        val = self.SpinBoxArt1.value()+0.1
+        self.SpinBoxArt1.setValue(val)
+
+    def FKInc1Art1(self):
+        val = self.SpinBoxArt1.value()+1
+        self.SpinBoxArt1.setValue(val)
+
+    def FKInc10Art1(self):
+        val = self.SpinBoxArt1.value()+10
+        self.SpinBoxArt1.setValue(val)
+
+# FK Art2 Functions
     def FKMoveArt2(self):
         if s0.isOpen():
             if self.G1MoveRadioButton.isChecked():
-                typeOfMovement="G1 "
-                feedRate=" F" + str(self.FeedRateInput.value())
+                typeOfMovement = "G1 "
+                feedRate = " F" + str(self.FeedRateInput.value())
             else:
-                typeOfMovement="G0 "
-                feedRate=""
-            message=typeOfMovement + "B" + str(self.SpinBoxArt2.value()) + " C" + str(self.SpinBoxArt2.value()) + feedRate
+                typeOfMovement = "G0 "
+                feedRate = ""
+            message = typeOfMovement + "B" + \
+                str(self.SpinBoxArt2.value()) + " C" + \
+                str(self.SpinBoxArt2.value()) + feedRate
             messageToSend = message + "\n"
             messageToConsole = ">>> " + message
             s0.write(messageToSend.encode('UTF-8'))
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             self.noSerialConnection()
+
     def FKSliderUpdateArt2(self):
-        val=self.FKSliderArt2.value()/10
-        self.SpinBoxArt2.setValue(val)
-    def FKSpinBoxUpdateArt2(self):
-        val=int(self.SpinBoxArt2.value()*10)
-        self.FKSliderArt2.setValue(val)
-    def FKDec10Art2(self):
-        val=self.SpinBoxArt2.value()-10
-        self.SpinBoxArt2.setValue(val)
-    def FKDec1Art2(self):
-        val=self.SpinBoxArt2.value()-1
-        self.SpinBoxArt2.setValue(val)
-    def FKDec0_1Art2(self):
-        val=self.SpinBoxArt2.value()-0.1
-        self.SpinBoxArt2.setValue(val)
-    def FKInc0_1Art2(self):
-        val=self.SpinBoxArt2.value()+0.1
-        self.SpinBoxArt2.setValue(val)
-    def FKInc1Art2(self):
-        val=self.SpinBoxArt2.value()+1
-        self.SpinBoxArt2.setValue(val)
-    def FKInc10Art2(self):
-        val=self.SpinBoxArt2.value()+10
+        val = self.FKSliderArt2.value()/10
         self.SpinBoxArt2.setValue(val)
 
-#FK Art3 Functions
+    def FKSpinBoxUpdateArt2(self):
+        val = int(self.SpinBoxArt2.value()*10)
+        self.FKSliderArt2.setValue(val)
+
+    def FKDec10Art2(self):
+        val = self.SpinBoxArt2.value()-10
+        self.SpinBoxArt2.setValue(val)
+
+    def FKDec1Art2(self):
+        val = self.SpinBoxArt2.value()-1
+        self.SpinBoxArt2.setValue(val)
+
+    def FKDec0_1Art2(self):
+        val = self.SpinBoxArt2.value()-0.1
+        self.SpinBoxArt2.setValue(val)
+
+    def FKInc0_1Art2(self):
+        val = self.SpinBoxArt2.value()+0.1
+        self.SpinBoxArt2.setValue(val)
+
+    def FKInc1Art2(self):
+        val = self.SpinBoxArt2.value()+1
+        self.SpinBoxArt2.setValue(val)
+
+    def FKInc10Art2(self):
+        val = self.SpinBoxArt2.value()+10
+        self.SpinBoxArt2.setValue(val)
+
+# FK Art3 Functions
     def FKMoveArt3(self):
         if s0.isOpen():
             if self.G1MoveRadioButton.isChecked():
-                typeOfMovement="G1 "
-                feedRate=" F" + str(self.FeedRateInput.value())
+                typeOfMovement = "G1 "
+                feedRate = " F" + str(self.FeedRateInput.value())
             else:
-                typeOfMovement="G0 "
-                feedRate=""
-            message=typeOfMovement + "D" + str(self.SpinBoxArt3.value()) + feedRate
+                typeOfMovement = "G0 "
+                feedRate = ""
+            message = typeOfMovement + "D" + \
+                str(self.SpinBoxArt3.value()) + feedRate
             messageToSend = message + "\n"
             messageToConsole = ">>> " + message
             s0.write(messageToSend.encode('UTF-8'))
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             self.noSerialConnection()
+
     def FKSliderUpdateArt3(self):
-        val=self.FKSliderArt3.value()/10
-        self.SpinBoxArt3.setValue(val)
-    def FKSpinBoxUpdateArt3(self):
-        val=int(self.SpinBoxArt3.value()*10)
-        self.FKSliderArt3.setValue(val)
-    def FKDec10Art3(self):
-        val=self.SpinBoxArt3.value()-10
-        self.SpinBoxArt3.setValue(val)
-    def FKDec1Art3(self):
-        val=self.SpinBoxArt3.value()-1
-        self.SpinBoxArt3.setValue(val)
-    def FKDec0_1Art3(self):
-        val=self.SpinBoxArt3.value()-0.1
-        self.SpinBoxArt3.setValue(val)
-    def FKInc0_1Art3(self):
-        val=self.SpinBoxArt3.value()+0.1
-        self.SpinBoxArt3.setValue(val)
-    def FKInc1Art3(self):
-        val=self.SpinBoxArt3.value()+1
-        self.SpinBoxArt3.setValue(val)
-    def FKInc10Art3(self):
-        val=self.SpinBoxArt3.value()+10
+        val = self.FKSliderArt3.value()/10
         self.SpinBoxArt3.setValue(val)
 
-#FK Art4 Functions
+    def FKSpinBoxUpdateArt3(self):
+        val = int(self.SpinBoxArt3.value()*10)
+        self.FKSliderArt3.setValue(val)
+
+    def FKDec10Art3(self):
+        val = self.SpinBoxArt3.value()-10
+        self.SpinBoxArt3.setValue(val)
+
+    def FKDec1Art3(self):
+        val = self.SpinBoxArt3.value()-1
+        self.SpinBoxArt3.setValue(val)
+
+    def FKDec0_1Art3(self):
+        val = self.SpinBoxArt3.value()-0.1
+        self.SpinBoxArt3.setValue(val)
+
+    def FKInc0_1Art3(self):
+        val = self.SpinBoxArt3.value()+0.1
+        self.SpinBoxArt3.setValue(val)
+
+    def FKInc1Art3(self):
+        val = self.SpinBoxArt3.value()+1
+        self.SpinBoxArt3.setValue(val)
+
+    def FKInc10Art3(self):
+        val = self.SpinBoxArt3.value()+10
+        self.SpinBoxArt3.setValue(val)
+
+# FK Art4 Functions
     def FKMoveArt4(self):
         if s0.isOpen():
             if self.G1MoveRadioButton.isChecked():
-                typeOfMovement="G1 "
-                feedRate=" F" + str(self.FeedRateInput.value())
+                typeOfMovement = "G1 "
+                feedRate = " F" + str(self.FeedRateInput.value())
             else:
-                typeOfMovement="G0 "
-                feedRate=""
-            message=typeOfMovement + "X" + str(self.SpinBoxArt4.value()) + feedRate
+                typeOfMovement = "G0 "
+                feedRate = ""
+            message = typeOfMovement + "X" + \
+                str(self.SpinBoxArt4.value()) + feedRate
             messageToSend = message + "\n"
             messageToConsole = ">>> " + message
             s0.write(messageToSend.encode('UTF-8'))
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             self.noSerialConnection()
+
     def FKSliderUpdateArt4(self):
-        val=self.FKSliderArt4.value()/10
+        val = self.FKSliderArt4.value()/10
         self.SpinBoxArt4.setValue(val)
+
     def FKSpinBoxUpdateArt4(self):
-        val=int(self.SpinBoxArt4.value()*10)
+        val = int(self.SpinBoxArt4.value()*10)
         self.FKSliderArt4.setValue(val)
+
     def FKDec10Art4(self):
-        val=self.SpinBoxArt4.value()-10
+        val = self.SpinBoxArt4.value()-10
         self.SpinBoxArt4.setValue(val)
+
     def FKDec1Art4(self):
-        val=self.SpinBoxArt4.value()-1
+        val = self.SpinBoxArt4.value()-1
         self.SpinBoxArt4.setValue(val)
+
     def FKDec0_1Art4(self):
-        val=self.SpinBoxArt4.value()-0.1
+        val = self.SpinBoxArt4.value()-0.1
         self.SpinBoxArt4.setValue(val)
+
     def FKInc0_1Art4(self):
-        val=self.SpinBoxArt4.value()+0.1
+        val = self.SpinBoxArt4.value()+0.1
         self.SpinBoxArt4.setValue(val)
+
     def FKInc1Art4(self):
-        val=self.SpinBoxArt4.value()+1
+        val = self.SpinBoxArt4.value()+1
         self.SpinBoxArt4.setValue(val)
+
     def FKInc10Art4(self):
-        val=self.SpinBoxArt4.value()+10
+        val = self.SpinBoxArt4.value()+10
         self.SpinBoxArt4.setValue(val)
 
-#FK Art5 Functions
-    def FKMoveArt5(self): # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
+# FK Art5 Functions
+    # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
+    def FKMoveArt5(self):
         if s0.isOpen():
             if self.G1MoveRadioButton.isChecked():
-                typeOfMovement="G1 "
-                feedRate=" F" + str(self.FeedRateInput.value())
+                typeOfMovement = "G1 "
+                feedRate = " F" + str(self.FeedRateInput.value())
             else:
-                typeOfMovement="G0 "
-                feedRate=""
-            message=typeOfMovement + "Y" + str(self.SpinBoxArt5.value()) + feedRate
+                typeOfMovement = "G0 "
+                feedRate = ""
+            message = typeOfMovement + "Y" + \
+                str(self.SpinBoxArt5.value()) + feedRate
             messageToSend = message + "\n"
             messageToConsole = ">>> " + message
             s0.write(messageToSend.encode('UTF-8'))
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             self.noSerialConnection()
+
     def FKSliderUpdateArt5(self):
-        val=self.FKSliderArt5.value()/10
-        self.SpinBoxArt5.setValue(val)
-    def FKSpinBoxUpdateArt5(self):
-        val=int(self.SpinBoxArt5.value()*10)
-        self.FKSliderArt5.setValue(val)
-    def FKDec10Art5(self):
-        val=self.SpinBoxArt5.value()-10
-        self.SpinBoxArt5.setValue(val)
-    def FKDec1Art5(self):
-        val=self.SpinBoxArt5.value()-1
-        self.SpinBoxArt5.setValue(val)
-    def FKDec0_1Art5(self):
-        val=self.SpinBoxArt5.value()-0.1
-        self.SpinBoxArt5.setValue(val)
-    def FKInc0_1Art5(self):
-        val=self.SpinBoxArt5.value()+0.1
-        self.SpinBoxArt5.setValue(val)
-    def FKInc1Art5(self):
-        val=self.SpinBoxArt5.value()+1
-        self.SpinBoxArt5.setValue(val)
-    def FKInc10Art5(self):
-        val=self.SpinBoxArt5.value()+10
+        val = self.FKSliderArt5.value()/10
         self.SpinBoxArt5.setValue(val)
 
-#FK Art6 Functions
-    def FKMoveArt6(self): # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
+    def FKSpinBoxUpdateArt5(self):
+        val = int(self.SpinBoxArt5.value()*10)
+        self.FKSliderArt5.setValue(val)
+
+    def FKDec10Art5(self):
+        val = self.SpinBoxArt5.value()-10
+        self.SpinBoxArt5.setValue(val)
+
+    def FKDec1Art5(self):
+        val = self.SpinBoxArt5.value()-1
+        self.SpinBoxArt5.setValue(val)
+
+    def FKDec0_1Art5(self):
+        val = self.SpinBoxArt5.value()-0.1
+        self.SpinBoxArt5.setValue(val)
+
+    def FKInc0_1Art5(self):
+        val = self.SpinBoxArt5.value()+0.1
+        self.SpinBoxArt5.setValue(val)
+
+    def FKInc1Art5(self):
+        val = self.SpinBoxArt5.value()+1
+        self.SpinBoxArt5.setValue(val)
+
+    def FKInc10Art5(self):
+        val = self.SpinBoxArt5.value()+10
+        self.SpinBoxArt5.setValue(val)
+
+# FK Art6 Functions
+    # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
+    def FKMoveArt6(self):
         if s0.isOpen():
             if self.G1MoveRadioButton.isChecked():
-                typeOfMovement="G1 "
-                feedRate=" F" + str(self.FeedRateInput.value())
+                typeOfMovement = "G1 "
+                feedRate = " F" + str(self.FeedRateInput.value())
             else:
-                typeOfMovement="G0 "
-                feedRate=""
-            message=typeOfMovement + "Z" + str(self.SpinBoxArt6.value()) + feedRate
+                typeOfMovement = "G0 "
+                feedRate = ""
+            message = typeOfMovement + "Z" + \
+                str(self.SpinBoxArt6.value()) + feedRate
             messageToSend = message + "\n"
             messageToConsole = ">>> " + message
             s0.write(messageToSend.encode('UTF-8'))
             self.ConsoleOutput.appendPlainText(messageToConsole)
         else:
             self.noSerialConnection()
+
     def FKSliderUpdateArt6(self):
-        val=self.FKSliderArt6.value()/10
-        self.SpinBoxArt6.setValue(val)
-    def FKSpinBoxUpdateArt6(self):
-        val=int(self.SpinBoxArt6.value()*10)
-        self.FKSliderArt6.setValue(val)
-    def FKDec10Art6(self):
-        val=self.SpinBoxArt6.value()-10
-        self.SpinBoxArt6.setValue(val)
-    def FKDec1Art6(self):
-        val=self.SpinBoxArt6.value()-1
-        self.SpinBoxArt6.setValue(val)
-    def FKDec0_1Art6(self):
-        val=self.SpinBoxArt6.value()-0.1
-        self.SpinBoxArt6.setValue(val)
-    def FKInc0_1Art6(self):
-        val=self.SpinBoxArt6.value()+0.1
-        self.SpinBoxArt6.setValue(val)
-    def FKInc1Art6(self):
-        val=self.SpinBoxArt6.value()+1
-        self.SpinBoxArt6.setValue(val)
-    def FKInc10Art6(self):
-        val=self.SpinBoxArt6.value()+10
+        val = self.FKSliderArt6.value()/10
         self.SpinBoxArt6.setValue(val)
 
-#FK Every Articulation Functions
-    def FKMoveAll(self): # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
+    def FKSpinBoxUpdateArt6(self):
+        val = int(self.SpinBoxArt6.value()*10)
+        self.FKSliderArt6.setValue(val)
+
+    def FKDec10Art6(self):
+        val = self.SpinBoxArt6.value()-10
+        self.SpinBoxArt6.setValue(val)
+
+    def FKDec1Art6(self):
+        val = self.SpinBoxArt6.value()-1
+        self.SpinBoxArt6.setValue(val)
+
+    def FKDec0_1Art6(self):
+        val = self.SpinBoxArt6.value()-0.1
+        self.SpinBoxArt6.setValue(val)
+
+    def FKInc0_1Art6(self):
+        val = self.SpinBoxArt6.value()+0.1
+        self.SpinBoxArt6.setValue(val)
+
+    def FKInc1Art6(self):
+        val = self.SpinBoxArt6.value()+1
+        self.SpinBoxArt6.setValue(val)
+
+    def FKInc10Art6(self):
+        val = self.SpinBoxArt6.value()+10
+        self.SpinBoxArt6.setValue(val)
+
+# FK Every Articulation Functions
+    # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
+    def FKMoveAll(self):
         if s0.isOpen():
             if self.G1MoveRadioButton.isChecked():
-                typeOfMovement="G1 "
-                feedRate=" F" + str(self.FeedRateInput.value())
+                typeOfMovement = "G1 "
+                feedRate = " F" + str(self.FeedRateInput.value())
             else:
-                typeOfMovement="G0 "
-                feedRate=""
-            message=typeOfMovement + "A" + str(self.SpinBoxArt1.value()) + " B" + str(self.SpinBoxArt2.value()) + " C" + str(self.SpinBoxArt2.value()) + " D" + str(self.SpinBoxArt3.value()) + " X" + str(self.SpinBoxArt4.value()) + " Y" + str(self.SpinBoxArt5.value()) + " Z" + str(self.SpinBoxArt6.value()) + feedRate
+                typeOfMovement = "G0 "
+                feedRate = ""
+            message = typeOfMovement + "A" + str(self.SpinBoxArt1.value()) + " B" + str(self.SpinBoxArt2.value()) + " C" + str(self.SpinBoxArt2.value()) + " D" + str(
+                self.SpinBoxArt3.value()) + " X" + str(self.SpinBoxArt4.value()) + " Y" + str(self.SpinBoxArt5.value()) + " Z" + str(self.SpinBoxArt6.value()) + feedRate
             messageToSend = message + "\n"
             messageToConsole = ">>> " + message
             s0.write(messageToSend.encode('UTF-8'))
@@ -416,9 +481,10 @@ class AsgardGUI(Ui_MainWindow):
             self.noSerialConnection()
 
 # Gripper Functions
-    def MoveGripper(self): # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
+    # En realidad esto no va así, hay que calcular el movimiento acoplado. Proximamente.
+    def MoveGripper(self):
         if s0.isOpen():
-            message="M3 S" + str((255/100)*self.SpinBoxGripper.value())
+            message = "M3 S" + str((255/100)*self.SpinBoxGripper.value())
             messageToSend = message + "\n"
             messageToConsole = ">>> " + message
             s0.write(messageToSend.encode('UTF-8'))
@@ -427,22 +493,27 @@ class AsgardGUI(Ui_MainWindow):
             self.noSerialConnection()
 
     def SliderUpdateGripper(self):
-        val=self.SliderGripper.value()
+        val = self.SliderGripper.value()
         self.SpinBoxGripper.setValue(val)
+
     def SpinBoxUpdateGripper(self):
-        val=int(self.SpinBoxGripper.value())
+        val = int(self.SpinBoxGripper.value())
         self.SliderGripper.setValue(val)
+
     def Dec10Gripper(self):
-        val=self.SpinBoxGripper.value()-10
+        val = self.SpinBoxGripper.value()-10
         self.SpinBoxGripper.setValue(val)
+
     def Dec1Gripper(self):
-        val=self.SpinBoxGripper.value()-1
+        val = self.SpinBoxGripper.value()-1
         self.SpinBoxGripper.setValue(val)
+
     def Inc1Gripper(self):
-        val=self.SpinBoxGripper.value()+1
+        val = self.SpinBoxGripper.value()+1
         self.SpinBoxGripper.setValue(val)
+
     def Inc10Gripper(self):
-        val=self.SpinBoxGripper.value()+10
+        val = self.SpinBoxGripper.value()+10
         self.SpinBoxGripper.setValue(val)
 
 # Serial Connection functions
@@ -454,7 +525,7 @@ class AsgardGUI(Ui_MainWindow):
         serialPort = self.SerialPortComboBox.currentText()
         baudrate = self.BaudRateComboBox.currentText()
         if serialPort != "":
-            if baudrate!="":
+            if baudrate != "":
                 s0.port = serialPort
                 s0.baudrate = baudrate
                 s0.timeout = 1
@@ -463,26 +534,27 @@ class AsgardGUI(Ui_MainWindow):
                     s0.open()
                     self.SerialThreadClass.start()
                 except Exception as e:
-                    print ("error opening serial port: " + str(e))
+                    print("error opening serial port: " + str(e))
             else:
                 self.blankBaudRate()
         else:
             self.blankSerialPort()
 
     def serialDisconnected(self):
-        self.RobotStateDisplay.setStyleSheet('background-color: rgb(255, 0, 0)')
+        self.RobotStateDisplay.setStyleSheet(
+            'background-color: rgb(255, 0, 0)')
         self.RobotStateDisplay.setText("Disconnected")
 
     def updateConsole(self, dataRead):
-        verboseShow=self.ConsoleShowVerbosecheckBox.isChecked()
-        okShow=self.ConsoleShowOkRespcheckBox.isChecked()
+        verboseShow = self.ConsoleShowVerbosecheckBox.isChecked()
+        okShow = self.ConsoleShowOkRespcheckBox.isChecked()
         isDataReadVerbose = "MPos" in dataRead
         isDataOkResponse = "ok" in dataRead
 
-        if dataRead=="SERIAL-DISCONNECTED":
+        if dataRead == "SERIAL-DISCONNECTED":
             s0.close()
             self.serialDisconnected()
-            print ("Serial Connection Lost")
+            print("Serial Connection Lost")
 
         else:
             if not isDataReadVerbose and not isDataOkResponse:
@@ -495,18 +567,18 @@ class AsgardGUI(Ui_MainWindow):
                     self.ConsoleOutput.appendPlainText(dataRead)
 
     def sendSerialCommand(self):
-        messageToSent=self.ConsoleInput.text()+"\n"
-        messageToConsole= ">>> "+self.ConsoleInput.text()
+        messageToSent = self.ConsoleInput.text()+"\n"
+        messageToConsole = ">>> "+self.ConsoleInput.text()
         if s0.isOpen():
-            if messageToSent!="":
+            if messageToSent != "":
                 s0.write(messageToSent.encode('UTF-8'))
                 self.ConsoleOutput.appendPlainText(messageToConsole)
                 self.ConsoleInput.clear()
         else:
             self.noSerialConnection()
 
-    def updateFKPosDisplay(self,dataRead):
-        data=dataRead[1:][:-1].split(",")
+    def updateFKPosDisplay(self, dataRead):
+        data = dataRead[1:][:-1].split(",")
         self.updateCurrentState(data[0])
         self.FKCurrentPosValueArt1.setText(data[1][5:][:-2]+"º")
         self.FKCurrentPosValueArt2.setText(data[2][:-2]+"º")
@@ -517,43 +589,53 @@ class AsgardGUI(Ui_MainWindow):
 
     def updateCurrentState(self, state):
         self.RobotStateDisplay.setText(state)
-        if state=="Idle" or state=="Run":
-            self.RobotStateDisplay.setStyleSheet('background-color: rgb(0, 255, 0)')
-        elif state=="Home":
-            self.RobotStateDisplay.setStyleSheet('background-color: rgb(85, 255, 255)')
-        elif state=="Alarm":
-            self.RobotStateDisplay.setStyleSheet('background-color: rgb(255, 255, 0)')
-        elif state=="Hold":
-            self.RobotStateDisplay.setStyleSheet('background-color: rgb(255, 0, 0)')
+        if state == "Idle" or state == "Run":
+            self.RobotStateDisplay.setStyleSheet(
+                'background-color: rgb(0, 255, 0)')
+        elif state == "Home":
+            self.RobotStateDisplay.setStyleSheet(
+                'background-color: rgb(85, 255, 255)')
+        elif state == "Alarm":
+            self.RobotStateDisplay.setStyleSheet(
+                'background-color: rgb(255, 255, 0)')
+        elif state == "Hold":
+            self.RobotStateDisplay.setStyleSheet(
+                'background-color: rgb(255, 0, 0)')
         else:
-            self.RobotStateDisplay.setStyleSheet('background-color: rgb(255, 255, 255)')
-
+            self.RobotStateDisplay.setStyleSheet(
+                'background-color: rgb(255, 255, 255)')
 
     def blankSerialPort(self):
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-        msgBox.setText("There is not Serial Port value indicated to establish the connection.\nPlease check it and try to connect again.")
+        msgBox.setText(
+            "There is not Serial Port value indicated to establish the connection.\nPlease check it and try to connect again.")
         msgBox.exec_()
 
     def blankBaudRate(self):
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-        msgBox.setText("There is not Baud Rate value indicated to establish the connection.\nPlease check it and try to connect again.")
+        msgBox.setText(
+            "There is not Baud Rate value indicated to establish the connection.\nPlease check it and try to connect again.")
         msgBox.exec_()
 
     def noSerialConnection(self):
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-        msgBox.setText("The connection has not been established yet. Please establish the connection before trying to control.")
+        msgBox.setText(
+            "The connection has not been established yet. Please establish the connection before trying to control.")
         msgBox.exec_()
 
 ############### SERIAL READ THREAD CLASS ###############
 
+
 class SerialThreadClass(QtCore.QThread):
     elapsedTime = time.time()
-    serialSignal = pyqtSignal(str)
+    serialSignal = Signal(str)
+
     def __init__(self, parent=None):
-         super(SerialThreadClass,self).__init__(parent)
+        super(SerialThreadClass, self).__init__(parent)
+
     def run(self):
         while True:
             if s0.isOpen():
@@ -561,29 +643,21 @@ class SerialThreadClass(QtCore.QThread):
                     s0.inWaiting()
                 except:
                     self.serialSignal.emit("SERIAL-DISCONNECTED")
-                    print ("Lost Serial connection!")
+                    print("Lost Serial connection!")
 
                 try:
-                    if time.time()-self.elapsedTime>0.1:
-                        self.elapsedTime=time.time()
+                    if time.time()-self.elapsedTime > 0.1:
+                        self.elapsedTime = time.time()
                         s0.write("?\n".encode('UTF-8'))
                     dataRead = str(s0.readline())
-                    dataCropped=dataRead[2:][:-5]
-                    if dataCropped!="":
+                    dataCropped = dataRead[2:][:-5]
+                    if dataCropped != "":
                         self.serialSignal.emit(dataCropped)
                 except Exception as e:
-                    print ("Something failed: " + str(e))
+                    print("Something failed: " + str(e))
 
 
 ###############  SERIAL READ THREAD CLASS ###############
-
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -593,4 +667,4 @@ if __name__ == '__main__':
     prog = AsgardGUI(mwindow)
 
     mwindow.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
