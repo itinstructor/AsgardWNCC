@@ -8,10 +8,10 @@ from PySide6 import QtCore
 from PySide6.QtCore import Signal as Signal
 
 # pip install pyserial
-import serial
+# import serial
 
-# Create a serial object
-s0 = serial.Serial()
+# # Create a serial object
+# s0 = serial.Serial()
 
 
 class SerialThreadClass(QtCore.QThread):
@@ -21,20 +21,23 @@ class SerialThreadClass(QtCore.QThread):
     # Define a signal that will emit a string
     serialSignal = Signal(str)
 
+    
+
 # ---------------------------- INIT -------------------------------------- #
-    def __init__(self, parent=None):
+    def __init__(self, s0, parent=None):
         # Call the parent class (QThread) constructor
         super(SerialThreadClass, self).__init__(parent)
+        self.s0 = s0
 
 # ---------------------------- RUN --------------------------------------- #
     def run(self):
         # This method will run in a separate thread
         while True:
             # Check if the serial port is open
-            if s0.isOpen():
+            if self.s0.isOpen():
                 try:
                     # Check if there is data waiting in the serial buffer
-                    s0.inWaiting()
+                    self.s0.inWaiting()
                 except:
                     # If an error occurs, emit a signal indicating
                     # the serial connection is lost
@@ -49,10 +52,10 @@ class SerialThreadClass(QtCore.QThread):
                         self.elapsedTime = time.time()
 
                         # Write a command to the serial port
-                        s0.write("?\n".encode('UTF-8'))
+                        self.s0.write("?\n".encode('UTF-8'))
 
                     # Read a line of data from the serial port
-                    dataRead = str(s0.readline())
+                    dataRead = str(self.s0.readline())
 
                     # Crop the data to remove unwanted characters
                     dataCropped = dataRead[2:][:-5]

@@ -34,7 +34,8 @@ class AsgardGUI(Ui_MainWindow):
 
         self.get_serial_ports()
 
-        self.SerialThreadClass = SerialThreadClass()
+        self.SerialThreadClass = SerialThreadClass(s0)
+
         self.SerialThreadClass.serialSignal.connect(self.update_console)
 
         self.actionAbout.triggered.connect(self.launch_about_window)
